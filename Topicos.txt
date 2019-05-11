@@ -7,3 +7,6 @@ Ideia de bjetivos iniciais:
 -Utilziar a transformada de fourier, para passar para o domnio da frequencia
 -Aplicar os filtros para reduzir ruidos
 -Modificar o arquivo para, talvez, reproduzir sons mais agudos ou mais graves.
+
+
+teste versionamento
