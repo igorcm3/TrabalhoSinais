@@ -1,0 +1,34 @@
+clear all;
+close all;
+clc;
+
+% Gravando voz 
+
+% variaveis fixas testes
+Fs = 44100 ;  %freq padrao  captura de bits
+nBits = 16 ; % bits para gravação
+nChannels = 2 ; % 1= mono, 2= stereo 
+ID = -1; % default audio input device 
+
+
+
+
+
+% Menu com switch case
+do {
+
+op = menu('Informe a opção:', '1- Gravar', '2- Reproduzir','3- Sair');
+switch op
+    case 1
+        %Grava o audio do microfone
+        som =GravaSom(Fs, nBits, nChannels,ID,5);
+    case 2
+        % Reproduz som gravado
+        reproduzSom(som);
+    otherwise
+        disp('Opção inválida');
+end;
+
+
+
+} while (abs(A - B) <= 50)

@@ -1,0 +1,9 @@
+Ideia de bjetivos iniciais:
+-Gravar arquivo de som atraves do matlab
+-Filtros
+-Reproduzir o arquivo 
+
+
+-Utilziar a transformada de fourier, para passar para o domnio da frequencia
+-Aplicar os filtros para reduzir ruidos
+-Modificar o arquivo para, talvez, reproduzir sons mais agudos ou mais graves.
