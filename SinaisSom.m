@@ -8,15 +8,16 @@ clc;
 Fs = 44100 ;  %freq padrao  captura de bits
 nBits = 16 ; % bits para gravação
 nChannels = 2 ; % 1= mono, 2= stereo 
-ID = -1; % default audio input device 
-
+ID = -1; % default audio input device  
 % Menu com switch case
 while 1
 
 op = menu('Informe a opção:', '1- Gravar', '2- Reproduzir','3- Sair');
 
 if (op==3)
-      break;
+    clc;
+    disp('Programa finalizado!');
+    break;
 end;
 
 switch op
