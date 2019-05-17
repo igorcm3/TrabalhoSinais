@@ -8,5 +8,7 @@ Ideia de bjetivos iniciais:
 -Aplicar os filtros para reduzir ruidos
 -Modificar o arquivo para, talvez, reproduzir sons mais agudos ou mais graves.
 
+BALESTRIN
+
 
 teste versionamento
