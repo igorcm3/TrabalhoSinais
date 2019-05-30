@@ -23,7 +23,7 @@ function varargout = Tela(varargin)
 
 % Edit the above text to modify the response to help Tela
 
-% Last Modified by GUIDE v2.5 28-May-2019 21:03:43
+% Last Modified by GUIDE v2.5 30-May-2019 19:54:56
 
 % Begin initialization code - DO NOT EDIT
 clc;
@@ -171,13 +171,13 @@ function rbGrafico1_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of rbGrafico1
 
 
-% --- Executes on button press in radiobutton9.
-function radiobutton9_Callback(hObject, eventdata, handles)
-% hObject    handle to radiobutton9 (see GCBO)
+% --- Executes on button press in rbFft.
+function rbFft_Callback(hObject, eventdata, handles)
+% hObject    handle to rbFft (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of radiobutton9
+% Hint: get(hObject,'Value') returns toggle state of rbFft
 
 
 % --- Executes on button press in radiobutton10.
@@ -207,7 +207,7 @@ if get(handles.rbGrafico1,'Value') == 1
     %Attualiza a estrutura handles
     guidata(hObject, handles);
     %Abre a tela de graficos
-    Graficos(handles);
+    
 % %gtrafico 2
 % elseif get(handles.rbAcelerar,'Value') == 1
 %           reproduzSom(handles.Som, 85000);
@@ -217,6 +217,18 @@ if get(handles.rbGrafico1,'Value') == 1
 % else get(handles.rbAtrasar,'Value') == 1
 %           reproduzSom(handles.Som, 35000); 
 end
+
+if get(handles.rbFft,'Value') == 1
+    
+   handles.TituloGrafico = 'FFT' 
+   handles.SomOriginal = handles.Som;
+   handles.Som = abs(fft(handles.SomOriginal));
+   y = abs(fft(handles.SomOriginal));
+   save 'dados.mat',y;
+   guidata(hObject, handles); %atualiza a interface
+   Graficos(handles);
+end
+    
 % --- Executes on button press in btnSalvar.
 function btnSalvar_Callback(hObject, eventdata, handles)
 % hObject    handle to btnSalvar (see GCBO)
