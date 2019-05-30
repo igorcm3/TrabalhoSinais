@@ -23,7 +23,7 @@ function varargout = Tela(varargin)
 
 % Edit the above text to modify the response to help Tela
 
-% Last Modified by GUIDE v2.5 25-May-2019 20:27:45
+% Last Modified by GUIDE v2.5 28-May-2019 21:03:43
 
 % Begin initialization code - DO NOT EDIT
 clc;
@@ -197,8 +197,17 @@ function btnPlotar_Callback(hObject, eventdata, handles)
 
 %Controle de radio buttons
 % grafico 1, configura e abre a tela de graficos
-if get(handles.rbGrafico1,'Value') == 1 
-         Graficos;
+if get(handles.rbGrafico1,'Value') == 1
+    %PASSANDO O HANDLES(ESTRUTURA DE DADOS DESSA TELA) E ABRINDO A TELA DE
+    %GRAFICOS. NA TELA DE GRAFICOS UTILIZO ESSES DADOS PARA MONTAR O
+    %GRAFICO
+    
+    %TESTE DE 'PARAMETRO' DE HANLDES ENTRE GUI's
+    handles.TituloGrafico = 'Igor Corona'
+    %Attualiza a estrutura handles
+    guidata(hObject, handles);
+    %Abre a tela de graficos
+    Graficos(handles);
 % %gtrafico 2
 % elseif get(handles.rbAcelerar,'Value') == 1
 %           reproduzSom(handles.Som, 85000);
@@ -215,5 +224,12 @@ function btnSalvar_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 %Salva o som em um arquivo.mp4 na pasta raiz do projeto
-disp('Arquivo salvo!');
 audiowrite ('Som.mp4', handles.Som, handles.Fs);
+disp('Arquivo salvo!');
+validaSom();
+% mensagem erro   f = warndlg('Erro ao repproduzir. Grave um audio!','Reprodução');
+
+
+function result= validaSom()
+result = isvalid(handles.Som);
+    

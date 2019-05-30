@@ -22,7 +22,7 @@ function varargout = Graficos(varargin)
 
 % Edit the above text to modify the response to help Graficos
 
-% Last Modified by GUIDE v2.5 25-May-2019 20:24:52
+% Last Modified by GUIDE v2.5 28-May-2019 20:11:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -51,11 +51,11 @@ function Graficos_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to Graficos (see VARARGIN)
-
 % Choose default command line output for Graficos
-handles.output = hObject;
-
 % Update handles structure
+handles.Som = varargin{1}.Som;
+handles.Fs = varargin{1}.Fs;
+handles.TituloGrafico = varargin{1}.TituloGrafico;
 guidata(hObject, handles);
 % UIWAIT makes Graficos wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -67,8 +67,7 @@ function varargout = Graficos_OutputFcn(hObject, eventdata, handles)
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-% Get default command line output from handles structure
-varargout{1} = handles.output;
-guidata(hObject, handles);
-%plot(10,10);
+clc;
+%handles.lbTituloGrafico.Strings= handles.TituloGrafico;
+set (handles.lbTituloGrafico, 'String' , handles.TituloGrafico);
+plot(handles.Som);

@@ -1,0 +1,1 @@
+setupExample('matlab/GUIDEShareDataAmong3AppsExample');addpath(fullfile(exampleUtils.getExamplesDir(),getfield(findExample('matlab/GUIDEShareDataAmong3AppsExample'),'component'),getfield(findExample('matlab/GUIDEShareDataAmong3AppsExample'),'main')));guide('guide_colorpalette.fig');guide('guide_toolpalette.fig');guide('guide_iconeditor.fig');
