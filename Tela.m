@@ -102,6 +102,15 @@ function btnReproduzir_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+%% Aplicando Filtros
+
+if get(handles.rbRemoverGraves,'Value') == 1
+    removerGrave(); 
+end
+
+%% 
+
+
 %Controle de radio buttons
 % normal
 if get(handles.rbNormal,'Value') == 1 
