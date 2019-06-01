@@ -1,4 +1,5 @@
 function reproduzir = reproduzSom(som, Fs)
+
 disp('Reproduzindo...');
 %antigo--> rteproduzia o objeto audiorecorder
 %reproduzir = play(som);

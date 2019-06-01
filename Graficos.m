@@ -54,6 +54,7 @@ function Graficos_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for Graficos
 % Update handles structure
 handles.Som = varargin{1}.Som;
+handles.SomOriginal = varargin{1}.SomOriginal;
 handles.Fs = varargin{1}.Fs;
 handles.TituloGrafico = varargin{1}.TituloGrafico;
 guidata(hObject, handles);
@@ -70,4 +71,7 @@ function varargout = Graficos_OutputFcn(hObject, eventdata, handles)
 clc;
 %handles.lbTituloGrafico.Strings= handles.TituloGrafico;
 set (handles.lbTituloGrafico, 'String' , handles.TituloGrafico);
-plot(handles.Som);
+plot(handles.axGrafico,handles.Som);
+set(handles.axGrafico,'XMinorTick','on');
+plot(handles.axGrafico2,handles.SomOriginal);
+set(handles.axGrafico,'XMinorTick','on');

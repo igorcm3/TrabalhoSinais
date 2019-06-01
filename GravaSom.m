@@ -3,10 +3,13 @@ function gravar = GravaSom(Fs, nBits, nChannels, ID, tempoGravacao)
 recObj = audiorecorder(Fs,nBits,nChannels,ID);
 disp('Fale algo para ser gravado!')
 disp(strcat('gravando por: ',' ',int2str(tempoGravacao),' segundos'));
+
 recordblocking(recObj,tempoGravacao );
+
 for i=1:tempoGravacao
  disp(strcat('Gravando... ',int2str(i)));
 end;
+
 disp('Fim da gravação!.');
 gravar = recObj;
 %gravar = play(recObj);
