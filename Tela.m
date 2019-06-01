@@ -91,6 +91,7 @@ som = GravaSom(Fs, nBits, nChannels,ID,tempogravacao);
 somArray = getaudiodata(som);
 handles.Som = somArray;
 handles.Fs = Fs;
+handles.SomOriginal = handles.Som; 
 guidata(hObject,handles);
 
 
@@ -105,7 +106,7 @@ function btnReproduzir_Callback(hObject, eventdata, handles)
 %Controle de radio buttons
 % normal
 if get(handles.rbNormal,'Value') == 1 
-          reproduzSom(handles.Som, handles.Fs);
+          reproduzSom(handles.SomOriginal, handles.Fs);
 %acelerado
 elseif get(handles.rbAcelerar,'Value') == 1
           handles.Fs = 80000;
@@ -114,9 +115,9 @@ elseif get(handles.rbAcelerar,'Value') == 1
 
 %atrasar
 else get(handles.rbAtrasar,'Value') == 1
-          handles.Fs = 35000;
-          reproduzSom(handles.Som,35000); 
-
+         handles.Som = reamostarSinal(handles.Som, 5, handles.Fs);
+         handles.FsAtrasar = handles.Fs/5; 
+         reproduzSom(handles.Som,handles.Fs); 
 end;
 
 % --- Executes on button press in btnFiltros.
