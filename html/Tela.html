@@ -1,0 +1,619 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Tela</title><meta name="generator" content="MATLAB 9.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-01"><meta name="DC.source" content="Tela.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">Aplicando Filtros %Bale</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> varargout = Tela(varargin)
+<span class="comment">% TELA MATLAB code for Tela.fig</span>
+<span class="comment">%      TELA, by itself, creates a new TELA or raises the existing</span>
+<span class="comment">%      singleton*.</span>
+<span class="comment">%</span>
+<span class="comment">%      H = TELA returns the handle to a new TELA or the handle to</span>
+<span class="comment">%      the existing singleton*.</span>
+<span class="comment">%</span>
+<span class="comment">%      TELA('CALLBACK',hObject,eventData,handles,...) calls the local</span>
+<span class="comment">%      function named CALLBACK in TELA.M with the given input arguments.</span>
+<span class="comment">%</span>
+<span class="comment">%      TELA('Property','Value',...) creates a new TELA or raises the</span>
+<span class="comment">%      existing singleton*.  Starting from the left, property value pairs are</span>
+<span class="comment">%      applied to the GUI before Tela_OpeningFcn gets called.  An</span>
+<span class="comment">%      unrecognized property name or invalid value makes property application</span>
+<span class="comment">%      stop.  All inputs are passed to Tela_OpeningFcn via varargin.</span>
+<span class="comment">%</span>
+<span class="comment">%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one</span>
+<span class="comment">%      instance to run (singleton)".</span>
+<span class="comment">%</span>
+<span class="comment">% See also: GUIDE, GUIDATA, GUIHANDLES</span>
+
+<span class="comment">% Edit the above text to modify the response to help Tela</span>
+
+<span class="comment">% Last Modified by GUIDE v2.5 01-Jun-2019 14:52:10</span>
+
+<span class="comment">% Begin initialization code - DO NOT EDIT</span>
+clc;
+gui_Singleton = 1;
+gui_State = struct(<span class="string">'gui_Name'</span>,       mfilename, <span class="keyword">...</span>
+                   <span class="string">'gui_Singleton'</span>,  gui_Singleton, <span class="keyword">...</span>
+                   <span class="string">'gui_OpeningFcn'</span>, @Tela_OpeningFcn, <span class="keyword">...</span>
+                   <span class="string">'gui_OutputFcn'</span>,  @Tela_OutputFcn, <span class="keyword">...</span>
+                   <span class="string">'gui_LayoutFcn'</span>,  [] , <span class="keyword">...</span>
+                   <span class="string">'gui_Callback'</span>,   []);
+<span class="keyword">if</span> nargin &amp;&amp; ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+<span class="keyword">else</span>
+    gui_mainfcn(gui_State, varargin{:});
+<span class="keyword">end</span>
+<span class="comment">% End initialization code - DO NOT EDIT</span>
+<span class="comment">% --- Executes just before Tela is made visible.</span>
+<span class="keyword">function</span> Tela_OpeningFcn(hObject, eventdata, handles, varargin)
+<span class="comment">% This function has no output args, see OutputFcn.</span>
+<span class="comment">% hObject    handle to figure</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+<span class="comment">% varargin   command line arguments to Tela (see VARARGIN)</span>
+
+<span class="comment">% Choose default command line output for Tela</span>
+handles.output = hObject;
+
+<span class="comment">% Update handles structure</span>
+guidata(hObject, handles);
+
+<span class="comment">% UIWAIT makes Tela wait for user response (see UIRESUME)</span>
+<span class="comment">% uiwait(handles.figure1);</span>
+
+
+<span class="comment">% --- Outputs from this function are returned to the command line.</span>
+<span class="keyword">function</span> varargout = Tela_OutputFcn(hObject, eventdata, handles)
+<span class="comment">% varargout  cell array for returning output args (see VARARGOUT);</span>
+<span class="comment">% hObject    handle to figure</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Get default command line output from handles structure</span>
+varargout{1} = handles.output;
+
+<span class="comment">% --- Executes on button press in btnGravaSom.</span>
+<span class="keyword">function</span> btnGravaSom_Callback(hObject, eventdata, handles)
+
+<span class="comment">% hObject    handle to btnGravaSom (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">%------------- variaveis para gravar voz</span>
+Fs = 44100 ;  <span class="comment">%freq padrao  captura de bits</span>
+nBits = 16 ; <span class="comment">% bits para grava&ccedil;&atilde;o</span>
+nChannels = 2 ; <span class="comment">% 1= mono, 2= stereo</span>
+ID = -1; <span class="comment">% default audio input device</span>
+<span class="comment">%----------------</span>
+tempogravacao = str2num(get(findobj(gcf, <span class="string">'Tag'</span>,<span class="string">'edtTempoGravacao'</span>),<span class="string">'String'</span>));
+disp(strcat(<span class="string">'Tempo de grava&ccedil;&atilde;o:  '</span>,num2str(tempogravacao)));
+som = GravaSom(Fs, nBits, nChannels,ID,tempogravacao);
+somArray = getaudiodata(som);
+handles.Som = somArray;
+handles.Fs = Fs;
+handles.SomOriginal = handles.Som;
+guidata(hObject,handles);
+
+
+
+<span class="comment">% --- Executes on button press in btnReproduzir.</span>
+<span class="keyword">function</span> btnReproduzir_Callback(hObject, eventdata, handles)
+</pre><pre class="codeinput"><span class="comment">% hObject    handle to btnReproduzir (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+</pre><h2 id="3">Aplicando Filtros %Bale</h2><pre class="codeinput"><span class="keyword">if</span> get(handles.rbRemoverGraves,<span class="string">'Value'</span>) == 1
+    somSemGraves = removerGrave(handles.Som,handles.Fs);
+    handles.Som = somSemGraves;
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> get(handles.rbTremolo,<span class="string">'Value'</span>) == 1
+    somTremoloArray = tremolo(handles.Som,handles.Fs);
+    handles.Som = somTremoloArray;
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> get(handles.rbWah,<span class="string">'Value'</span>) == 1
+    somWahArray = wah_wah(handles.Som,handles.Fs);
+    handles.Som = somWahArray;
+<span class="keyword">end</span>
+</pre><pre class="codeinput"><span class="comment">%Controle de radio buttons</span>
+<span class="comment">% normal</span>
+<span class="keyword">if</span> get(handles.rbNormal,<span class="string">'Value'</span>) == 1
+          reproduzSom(handles.Som, handles.Fs); <span class="comment">% Botar SomOriginal para normal</span>
+<span class="comment">%acelerado</span>
+<span class="keyword">elseif</span> get(handles.rbAcelerar,<span class="string">'Value'</span>) == 1
+          handles.Fs = 80000;
+          reproduzSom(handles.Som, handles.Fs);
+
+
+<span class="comment">%atrasar</span>
+<span class="keyword">else</span> get(handles.rbAtrasar,<span class="string">'Value'</span>) == 1
+         handles.Som = reamostarSinal(handles.Som, 5, handles.Fs);
+         handles.FsAtrasar = handles.Fs/5;
+         reproduzSom(handles.Som,handles.Fs);
+<span class="keyword">end</span>;
+
+<span class="comment">% --- Executes on button press in btnFiltros.</span>
+</pre><pre class="codeinput"><span class="keyword">function</span> btnFiltros_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to btnFiltros (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in btnSair.</span>
+<span class="keyword">function</span> btnSair_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to btnSair (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">%sai da tela</span>
+<span class="comment">%selection = questdlg ('  Deseja sair?  ', 'Fechar programa', ' Sim ' , 'N&atilde;o ',' Sim ');</span>
+close <span class="string">all</span>;
+
+
+
+
+<span class="keyword">function</span> edtTempoGravacao_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to edtTempoGravacao (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hints: get(hObject,'String') returns contents of edtTempoGravacao as text</span>
+<span class="comment">%        str2double(get(hObject,'String')) returns contents of edtTempoGravacao as a double</span>
+
+
+<span class="comment">% --- Executes during object creation, after setting all properties.</span>
+<span class="keyword">function</span> edtTempoGravacao_CreateFcn(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to edtTempoGravacao (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+
+<span class="comment">% Hint: edit controls usually have a white background on Windows.</span>
+<span class="comment">%       See ISPC and COMPUTER.</span>
+<span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+    set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+<span class="keyword">end</span>
+
+
+<span class="comment">% --- Executes on button press in rbGrafico1.</span>
+<span class="keyword">function</span> rbGrafico1_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to rbGrafico1 (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hint: get(hObject,'Value') returns toggle state of rbGrafico1</span>
+
+
+<span class="comment">% --- Executes on button press in rbFft.</span>
+<span class="keyword">function</span> rbFft_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to rbFft (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hint: get(hObject,'Value') returns toggle state of rbFft</span>
+
+
+<span class="comment">% --- Executes on button press in radiobutton10.</span>
+<span class="keyword">function</span> radiobutton10_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to radiobutton10 (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hint: get(hObject,'Value') returns toggle state of radiobutton10</span>
+
+
+<span class="comment">% --- Executes on button press in btnPlotar.</span>
+<span class="keyword">function</span> btnPlotar_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to btnPlotar (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">%Controle de radio buttons</span>
+<span class="comment">% grafico 1, configura e abre a tela de graficos</span>
+<span class="keyword">if</span> get(handles.rbGrafico1,<span class="string">'Value'</span>) == 1
+    <span class="comment">%PASSANDO O HANDLES(ESTRUTURA DE DADOS DESSA TELA) E ABRINDO A TELA DE</span>
+    <span class="comment">%GRAFICOS. NA TELA DE GRAFICOS UTILIZO ESSES DADOS PARA MONTAR O</span>
+    <span class="comment">%GRAFICO</span>
+
+    <span class="comment">%TESTE DE 'PARAMETRO' DE HANLDES ENTRE GUI's</span>
+    handles.TituloGrafico = <span class="string">'Igor Corona'</span>
+    <span class="comment">%Attualiza a estrutura handles</span>
+    guidata(hObject, handles);
+    <span class="comment">%Abre a tela de graficos</span>
+
+<span class="comment">% %gtrafico 2</span>
+<span class="comment">% elseif get(handles.rbAcelerar,'Value') == 1</span>
+<span class="comment">%           reproduzSom(handles.Som, 85000);</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% %grafico 3</span>
+<span class="comment">% else get(handles.rbAtrasar,'Value') == 1</span>
+<span class="comment">%           reproduzSom(handles.Som, 35000);</span>
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> get(handles.rbFft,<span class="string">'Value'</span>) == 1
+
+   handles.TituloGrafico = <span class="string">'FFT'</span>
+   handles.SomOriginal = handles.Som;
+   handles.Som = abs(fft(handles.SomOriginal));
+<span class="comment">%    y = abs(fft(handles.SomOriginal));</span>
+<span class="comment">%    save 'dados.mat',y;</span>
+   guidata(hObject, handles); <span class="comment">%atualiza a interface</span>
+   Graficos(handles);
+<span class="keyword">end</span>
+
+<span class="comment">% --- Executes on button press in btnSalvar.</span>
+<span class="keyword">function</span> btnSalvar_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to btnSalvar (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">%Salva o som em um arquivo.mp4 na pasta raiz do projeto</span>
+audiowrite (<span class="string">'Som.mp4'</span>, handles.Som, handles.Fs);
+disp(<span class="string">'Arquivo salvo!'</span>);
+validaSom();
+<span class="comment">% mensagem erro   f = warndlg('Erro ao repproduzir. Grave um audio!','Reprodu&ccedil;&atilde;o');</span>
+
+
+<span class="keyword">function</span> result= validaSom()
+result = isvalid(handles.Som);
+
+
+
+<span class="comment">% --- Executes on button press in pbCarregar.</span>
+<span class="keyword">function</span> pbCarregar_Callback(hObject, eventdata, handles)
+    [file,path] = uigetfile(<span class="string">'*.mp3'</span>, <span class="string">'Selecione o som'</span>);
+    pathFile = strcat(path,file);
+    [x,Fs] = audioread(pathFile,<span class="string">'native'</span>);
+
+    somArray = getaudiodata(x);
+    handles.Som = somArray;
+</pre><img vspace="5" hspace="5" src="Tela_01.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+
+function varargout = Tela(varargin)
+% TELA MATLAB code for Tela.fig
+%      TELA, by itself, creates a new TELA or raises the existing
+%      singleton*.
+%
+%      H = TELA returns the handle to a new TELA or the handle to
+%      the existing singleton*.
+%
+%      TELA('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in TELA.M with the given input arguments.
+%
+%      TELA('Property','Value',...) creates a new TELA or raises the
+%      existing singleton*.  Starting from the left, property value pairs are
+%      applied to the GUI before Tela_OpeningFcn gets called.  An
+%      unrecognized property name or invalid value makes property application
+%      stop.  All inputs are passed to Tela_OpeningFcn via varargin.
+%
+%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
+%      instance to run (singleton)".
+%
+% See also: GUIDE, GUIDATA, GUIHANDLES
+
+% Edit the above text to modify the response to help Tela
+
+% Last Modified by GUIDE v2.5 01-Jun-2019 14:52:10
+
+% Begin initialization code - DO NOT EDIT
+clc;
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @Tela_OpeningFcn, ...
+                   'gui_OutputFcn',  @Tela_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
+% REPLACE_WITH_DASH_DASH- Executes just before Tela is made visible.
+function Tela_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to Tela (see VARARGIN)
+
+% Choose default command line output for Tela
+handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% UIWAIT makes Tela wait for user response (see UIRESUME)
+% uiwait(handles.figure1);
+
+
+% REPLACE_WITH_DASH_DASH- Outputs from this function are returned to the command line.
+function varargout = Tela_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in btnGravaSom.
+function btnGravaSom_Callback(hObject, eventdata, handles)
+
+% hObject    handle to btnGravaSom (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- variaveis para gravar voz 
+Fs = 44100 ;  %freq padrao  captura de bits
+nBits = 16 ; % bits para gravação
+nChannels = 2 ; % 1= mono, 2= stereo 
+ID = -1; % default audio input device
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+tempogravacao = str2num(get(findobj(gcf, 'Tag','edtTempoGravacao'),'String'));
+disp(strcat('Tempo de gravação:  ',num2str(tempogravacao))); 
+som = GravaSom(Fs, nBits, nChannels,ID,tempogravacao);
+somArray = getaudiodata(som);
+handles.Som = somArray;
+handles.Fs = Fs;
+handles.SomOriginal = handles.Som; 
+guidata(hObject,handles);
+
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in btnReproduzir.
+function btnReproduzir_Callback(hObject, eventdata, handles)
+
+% hObject    handle to btnReproduzir (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+%% Aplicando Filtros %Bale
+
+if get(handles.rbRemoverGraves,'Value') == 1
+    somSemGraves = removerGrave(handles.Som,handles.Fs);
+    handles.Som = somSemGraves;
+end
+
+if get(handles.rbTremolo,'Value') == 1
+    somTremoloArray = tremolo(handles.Som,handles.Fs);
+    handles.Som = somTremoloArray;
+end
+
+if get(handles.rbWah,'Value') == 1
+    somWahArray = wah_wah(handles.Som,handles.Fs);
+    handles.Som = somWahArray;
+end
+%% 
+
+
+%Controle de radio buttons
+% normal
+if get(handles.rbNormal,'Value') == 1 
+          reproduzSom(handles.Som, handles.Fs); % Botar SomOriginal para normal
+%acelerado
+elseif get(handles.rbAcelerar,'Value') == 1
+          handles.Fs = 80000;
+          reproduzSom(handles.Som, handles.Fs);
+
+
+%atrasar
+else get(handles.rbAtrasar,'Value') == 1
+         handles.Som = reamostarSinal(handles.Som, 5, handles.Fs);
+         handles.FsAtrasar = handles.Fs/5; 
+         reproduzSom(handles.Som,handles.Fs); 
+end;
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in btnFiltros.
+function btnFiltros_Callback(hObject, eventdata, handles)
+% hObject    handle to btnFiltros (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in btnSair.
+function btnSair_Callback(hObject, eventdata, handles)
+% hObject    handle to btnSair (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+%sai da tela
+%selection = questdlg ('  Deseja sair?  ', 'Fechar programa', ' Sim ' , 'Não ',' Sim ');
+close all;
+
+
+
+
+function edtTempoGravacao_Callback(hObject, eventdata, handles)
+% hObject    handle to edtTempoGravacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edtTempoGravacao as text
+%        str2double(get(hObject,'String')) returns contents of edtTempoGravacao as a double
+
+
+% REPLACE_WITH_DASH_DASH- Executes during object creation, after setting all properties.
+function edtTempoGravacao_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edtTempoGravacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in rbGrafico1.
+function rbGrafico1_Callback(hObject, eventdata, handles)
+% hObject    handle to rbGrafico1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of rbGrafico1
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in rbFft.
+function rbFft_Callback(hObject, eventdata, handles)
+% hObject    handle to rbFft (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of rbFft
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in radiobutton10.
+function radiobutton10_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of radiobutton10
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in btnPlotar.
+function btnPlotar_Callback(hObject, eventdata, handles)
+% hObject    handle to btnPlotar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+%Controle de radio buttons
+% grafico 1, configura e abre a tela de graficos
+if get(handles.rbGrafico1,'Value') == 1
+    %PASSANDO O HANDLES(ESTRUTURA DE DADOS DESSA TELA) E ABRINDO A TELA DE
+    %GRAFICOS. NA TELA DE GRAFICOS UTILIZO ESSES DADOS PARA MONTAR O
+    %GRAFICO
+    
+    %TESTE DE 'PARAMETRO' DE HANLDES ENTRE GUI's
+    handles.TituloGrafico = 'Igor Corona'
+    %Attualiza a estrutura handles
+    guidata(hObject, handles);
+    %Abre a tela de graficos
+    
+% %gtrafico 2
+% elseif get(handles.rbAcelerar,'Value') == 1
+%           reproduzSom(handles.Som, 85000);
+% 
+% 
+% %grafico 3
+% else get(handles.rbAtrasar,'Value') == 1
+%           reproduzSom(handles.Som, 35000); 
+end
+
+if get(handles.rbFft,'Value') == 1
+    
+   handles.TituloGrafico = 'FFT' 
+   handles.SomOriginal = handles.Som;
+   handles.Som = abs(fft(handles.SomOriginal));
+%    y = abs(fft(handles.SomOriginal));
+%    save 'dados.mat',y;
+   guidata(hObject, handles); %atualiza a interface
+   Graficos(handles);
+end
+    
+% REPLACE_WITH_DASH_DASH- Executes on button press in btnSalvar.
+function btnSalvar_Callback(hObject, eventdata, handles)
+% hObject    handle to btnSalvar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+%Salva o som em um arquivo.mp4 na pasta raiz do projeto
+audiowrite ('Som.mp4', handles.Som, handles.Fs);
+disp('Arquivo salvo!');
+validaSom();
+% mensagem erro   f = warndlg('Erro ao repproduzir. Grave um audio!','Reprodução');
+
+
+function result= validaSom()
+result = isvalid(handles.Som);
+    
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in pbCarregar.
+function pbCarregar_Callback(hObject, eventdata, handles)
+    [file,path] = uigetfile('*.mp3', 'Selecione o som');
+    pathFile = strcat(path,file);
+    [x,Fs] = audioread(pathFile,'native');
+    
+    somArray = getaudiodata(x);
+    handles.Som = somArray;
+
+##### SOURCE END #####
+--></body></html>

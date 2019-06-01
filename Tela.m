@@ -23,7 +23,7 @@ function varargout = Tela(varargin)
 
 % Edit the above text to modify the response to help Tela
 
-% Last Modified by GUIDE v2.5 30-May-2019 19:54:56
+% Last Modified by GUIDE v2.5 01-Jun-2019 14:52:10
 
 % Begin initialization code - DO NOT EDIT
 clc;
@@ -103,19 +103,29 @@ function btnReproduzir_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%% Aplicando Filtros
+%% Aplicando Filtros %Bale
 
 if get(handles.rbRemoverGraves,'Value') == 1
-    removerGrave(); 
+    somSemGraves = removerGrave(handles.Som,handles.Fs);
+    handles.Som = somSemGraves;
 end
 
+if get(handles.rbTremolo,'Value') == 1
+    somTremoloArray = tremolo(handles.Som,handles.Fs);
+    handles.Som = somTremoloArray;
+end
+
+if get(handles.rbWah,'Value') == 1
+    somWahArray = wah_wah(handles.Som,handles.Fs);
+    handles.Som = somWahArray;
+end
 %% 
 
 
 %Controle de radio buttons
 % normal
 if get(handles.rbNormal,'Value') == 1 
-          reproduzSom(handles.SomOriginal, handles.Fs);
+          reproduzSom(handles.Som, handles.Fs); % Botar SomOriginal para normal
 %acelerado
 elseif get(handles.rbAcelerar,'Value') == 1
           handles.Fs = 80000;
@@ -233,8 +243,8 @@ if get(handles.rbFft,'Value') == 1
    handles.TituloGrafico = 'FFT' 
    handles.SomOriginal = handles.Som;
    handles.Som = abs(fft(handles.SomOriginal));
-   y = abs(fft(handles.SomOriginal));
-   save 'dados.mat',y;
+%    y = abs(fft(handles.SomOriginal));
+%    save 'dados.mat',y;
    guidata(hObject, handles); %atualiza a interface
    Graficos(handles);
 end
@@ -255,3 +265,13 @@ validaSom();
 function result= validaSom()
 result = isvalid(handles.Som);
     
+
+
+% --- Executes on button press in pbCarregar.
+function pbCarregar_Callback(hObject, eventdata, handles)
+    [file,path] = uigetfile('*.mp3', 'Selecione o som');
+    pathFile = strcat(path,file);
+    [x,Fs] = audioread(pathFile,'native');
+    
+    somArray = getaudiodata(x);
+    handles.Som = somArray;
