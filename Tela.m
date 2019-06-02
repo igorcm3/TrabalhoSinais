@@ -269,9 +269,8 @@ result = isvalid(handles.Som);
 
 % --- Executes on button press in pbCarregar.
 function pbCarregar_Callback(hObject, eventdata, handles)
-    [file,path] = uigetfile('*.mp3', 'Selecione o som');
-    pathFile = strcat(path,file);
-    [x,Fs] = audioread(pathFile,'native');
-    
-    somArray = getaudiodata(x);
-    handles.Som = somArray;
+    [x,Fs] = audioread('Crawling.wav');
+    x
+    handles.Som = x;
+    handles.Fs = Fs;
+    guidata(hObject,handles);
