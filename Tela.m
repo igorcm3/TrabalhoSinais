@@ -113,11 +113,18 @@ end
 if get(handles.rbTremolo,'Value') == 1
     somTremoloArray = tremolo(handles.Som,handles.Fs);
     handles.Som = somTremoloArray;
+    plotGraficos(handles.Som,handles.Fs)
+    
 end
 
 if get(handles.rbWah,'Value') == 1
     somWahArray = wah_wah(handles.Som,handles.Fs);
     handles.Som = somWahArray;
+end
+
+if get(handles.rbEco,'Value') == 1
+    somEcoArray = eco(handles.Som,handles.Fs);
+    handles.Som = somEcoArray;
 end
 %% 
 
@@ -126,6 +133,7 @@ end
 % normal
 if get(handles.rbNormal,'Value') == 1 
           reproduzSom(handles.Som, handles.Fs); % Botar SomOriginal para normal
+          plotGraficos(handles.Som,handles.Fs)
 %acelerado
 elseif get(handles.rbAcelerar,'Value') == 1
           handles.Fs = 80000;
@@ -134,9 +142,15 @@ elseif get(handles.rbAcelerar,'Value') == 1
 
 %atrasar
 else get(handles.rbAtrasar,'Value') == 1
-         handles.Som = reamostarSinal(handles.Som, 5, handles.Fs);
-         handles.FsAtrasar = handles.Fs/5; 
-         reproduzSom(handles.Som,handles.Fs); 
+        outputFilename = 'CrawlingGrosso.wav';
+        audiowrite(outputFilename, handles.Som, handles.Fs/2);
+        [handles.Som, handles.Fs] = audioread(outputFilename);
+
+        soundview(handles.Som, handles.Fs);
+    
+%          handles.Som = reamostarSinal(handles.Som, 5, handles.Fs);
+%          handles.FsAtrasar = handles.Fs/5; 
+%          reproduzSom(handles.Som,handles.Fs); 
 end;
 
 % --- Executes on button press in btnFiltros.

@@ -11,6 +11,14 @@ alpha = 1.0;
 
 trem=(1+ alpha*sin(2*pi*index*(Fc/Fs)))';    % sin(2pi*fa/fs)
 
+ figure(4)
+ plot(somArray)
+ title('Som Original Anterior')
+ figure(5)
+ plot(trem)
+ title('Senoide adicionada')
+
+
 y = trem.*somArray;
-    
+
 tremoloRetorno = y;

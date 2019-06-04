@@ -23,7 +23,7 @@ damp = 0.05;
 
 % min and max centre cutoff frequency of variable bandpass filter
 minf=500;
-maxf=3000;
+maxf=1500;
 
 % wah frequency, how many Hz per second are cycled through
 Fw = 2000; 
@@ -51,7 +51,6 @@ Fc = Fc(1:length(x));
 % difference equation coefficients
 F1 = 2*sin((pi*Fc(1))/Fs);  % must be recalculated each time Fc changes
 Q1 = 2*damp;                % this dictates size of the pass bands
-
 
 yh=zeros(size(x));          % create emptly out vectors
 yb=zeros(size(x));
@@ -81,11 +80,8 @@ end
 maxyb = max(abs(yb));
 yb = yb/maxyb;
 
-% write output wav files
 wahRetorno = yb;
 
-% figure(1)
-% plot(x,'r');
-% figure(2)
-% plot(yb,'b');
-% title('Wah-wah and original Signal');
+figure(4)
+plot(x,'r');
+title('Sinal original anterior')

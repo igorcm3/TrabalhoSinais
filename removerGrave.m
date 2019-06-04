@@ -1,11 +1,14 @@
 function removerGrave = removerGrave(x, Fs)
 
-     y = bandstop(x,[1 500],Fs);
- 
-     figure(1)
-     bandstop(x,[1 10000],Fs)
-    
-%     soundsc(y,Fs);
-%     hold on
-    
+noise = 0.09 * randn(length(x), 1)
+y = x + noise;
+
+figure(4)
+plot(x)
+title('Som Original')
+
+figure(5)
+plot(noise)
+title('Ruido Adicionado')
+   
 removerGrave = y;
