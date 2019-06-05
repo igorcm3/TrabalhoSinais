@@ -103,28 +103,33 @@ function btnReproduzir_Callback(hObject, eventdata, handles)
 % hObject    handle to btnReproduzir (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-guidata(hObject, handles);
+
 %% Aplicando Filtros %Bale
+
 if get(handles.rbRemoverGraves,'Value') == 1
     %handles.Som = handles.SomOriginal;
     somSemGraves = removerGrave(handles.Som,handles.Fs);
     handles.Som = somSemGraves;
+    guidata(hObject, handles);
 end
 
 if get(handles.rbTremolo,'Value') == 1
     somTremoloArray = tremolo(handles.Som,handles.Fs);
     handles.Som = somTremoloArray;
+    guidata(hObject, handles);
     plotGraficos(handles.Som,handles.Fs)   
 end
 
 if get(handles.rbWah,'Value') == 1
     somWahArray = wah_wah(handles.Som,handles.Fs);
     handles.Som = somWahArray;
+    guidata(hObject, handles);
 end
 
 if get(handles.rbEco,'Value') == 1
     somEcoArray = eco(handles.Som,handles.Fs);
     handles.Som = somEcoArray;
+    guidata(hObject, handles);
 end
 %% 
 
@@ -132,27 +137,33 @@ end
 %Controle de radio buttons
 % normal
 if get(handles.rbNormal,'Value') == 1
+          handles.Som = handles.SomOriginal;
+          guidata(hObject, handles);
           reproduzSom(handles.Som, handles.Fs); 
           plotGraficos(handles.Som,handles.Fs)
-end
 %acelerado
-if get(handles.rbAcelerar,'Value') == 1
+elseif get(handles.rbAcelerar,'Value') == 1
+         % handles.Som = handles.SomOriginal;
           handles.Som = reamostarSinal(handles.Som, 7, 10);
+          handles.FsAtrasar = handles.Fs/5; 
+          guidata(hObject, handles);
           reproduzSom(handles.Som,handles.Fs); 
-          plotGraficos(handles.Som,handles.Fs);
-end
+          plotGraficos(handles.Som,handles.Fs)
 %atrasar
-if get(handles.rbAtrasar,'Value') == 1
+else get(handles.rbAtrasar,'Value') == 1
        % outputFilename = 'CrawlingGrosso.wav';
        %audiowrite(outputFilename, handles.Som, handles.Fs/2);
        %[handles.Som, handles.Fs] = audioread(outputFilename);
        %soundview(handles.Som, handles.Fs);
        %parametros para reamostrar:  reamostarSinal(sinal,1 p, q,)
        %p=dividendo q= divisor, isso sera multiplicado pelo sample rate
+      % handles.Som = handles.SomOriginal;
        handles.Som = reamostarSinal(handles.Som, 10,7);
+       guidata(hObject, handles);
        reproduzSom(handles.Som,handles.Fs); 
        plotGraficos(handles.Som,handles.Fs)
-end
+end;
+
 % --- Executes on button press in btnFiltros.
 function btnFiltros_Callback(hObject, eventdata, handles)
 % hObject    handle to btnFiltros (see GCBO)
@@ -268,8 +279,8 @@ function btnSalvar_Callback(hObject, eventdata, handles)
 % hObject    handle to btnSalvar (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+guidata(hObject, handles);
 %Salva o som em um arquivo.mp4 na pasta raiz do projeto
-%guidata(hObject, handles);
 audiowrite ('Som.mp4', handles.Som, handles.Fs);
 disp('Arquivo salvo!');
    
