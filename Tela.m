@@ -153,6 +153,8 @@ if get(handles.rbAtrasar,'Value') == 1
        reproduzSom(handles.Som,handles.Fs); 
        plotGraficos(handles.Som,handles.Fs)
 end
+
+%%
 % --- Executes on button press in btnFiltros.
 function btnFiltros_Callback(hObject, eventdata, handles)
 % hObject    handle to btnFiltros (see GCBO)
@@ -269,9 +271,12 @@ function btnSalvar_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 %Salva o som em um arquivo.mp4 na pasta raiz do projeto
-%guidata(hObject, handles);
+guidata(hObject, handles);
+f = msgbox('Arquivo salvo!');
 audiowrite ('Som.mp4', handles.Som, handles.Fs);
 disp('Arquivo salvo!');
+%delete(f);
+%clear('f');
    
 % --- Executes on button press in pbCarregar.
 function pbCarregar_Callback(hObject, eventdata, handles)
