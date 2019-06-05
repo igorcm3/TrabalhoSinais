@@ -136,21 +136,25 @@ if get(handles.rbNormal,'Value') == 1
           plotGraficos(handles.Som,handles.Fs)
 %acelerado
 elseif get(handles.rbAcelerar,'Value') == 1
-          handles.Fs = 80000;
-          reproduzSom(handles.Som, handles.Fs);
+          handles.Som = reamostarSinal(handles.Som, 3, 4);
+          handles.FsAtrasar = handles.Fs/5; 
+          reproduzSom(handles.Som,handles.Fs); 
+          plotGraficos(handles.Som,handles.Fs)
 
 
 %atrasar
 else get(handles.rbAtrasar,'Value') == 1
-        outputFilename = 'CrawlingGrosso.wav';
-        audiowrite(outputFilename, handles.Som, handles.Fs/2);
-        [handles.Som, handles.Fs] = audioread(outputFilename);
+       % outputFilename = 'CrawlingGrosso.wav';
+        %audiowrite(outputFilename, handles.Som, handles.Fs/2);
+        %[handles.Som, handles.Fs] = audioread(outputFilename);
 
-        soundview(handles.Som, handles.Fs);
-    
-%          handles.Som = reamostarSinal(handles.Som, 5, handles.Fs);
-%          handles.FsAtrasar = handles.Fs/5; 
-%          reproduzSom(handles.Som,handles.Fs); 
+        %soundview(handles.Som, handles.Fs);
+       %parametros para reamostrar:  reamostarSinal(sinal,1 p, q,)
+       %p=dividendo q= divisor, isso sera multiplicado pelo sample rate
+       handles.Som = reamostarSinal(handles.Som, 4,3);
+       handles.FsAtrasar = handles.Fs/5; 
+       reproduzSom(handles.Som,handles.Fs); 
+       plotGraficos(handles.Som,handles.Fs)
 end;
 
 % --- Executes on button press in btnFiltros.
@@ -237,7 +241,7 @@ if get(handles.rbGrafico1,'Value') == 1
     %GRAFICO
     
     %TESTE DE 'PARAMETRO' DE HANLDES ENTRE GUI's
-    handles.TituloGrafico = 'Igor Corona'
+    handles.TituloGrafico = 'Som original:'
     %Attualiza a estrutura handles
     guidata(hObject, handles);
     %Abre a tela de graficos
@@ -272,19 +276,10 @@ function btnSalvar_Callback(hObject, eventdata, handles)
 %Salva o som em um arquivo.mp4 na pasta raiz do projeto
 audiowrite ('Som.mp4', handles.Som, handles.Fs);
 disp('Arquivo salvo!');
-validaSom();
-% mensagem erro   f = warndlg('Erro ao repproduzir. Grave um audio!','Reprodução');
-
-
-function result= validaSom()
-result = isvalid(handles.Som);
-    
-
-
+   
 % --- Executes on button press in pbCarregar.
 function pbCarregar_Callback(hObject, eventdata, handles)
     [x,Fs] = audioread('Crawling.wav');
-    x
     handles.Som = x;
     handles.Fs = Fs;
     guidata(hObject,handles);
